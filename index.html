@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Example</title>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #counterDisplay {
+            font-size: 48px;
+            font-weight: bold;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="counterDisplay">0</div>
+    <button id="startButton">Start Timer</button>
+    <button id="stopButton">Stop Timer</button>
+
+    <script>
+        var counter = 0;
+        var intervalId;
+        const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+        let index = 0;
+
+        function updateCounter() {
+            counter++;
+            document.getElementById("counterDisplay").textContent = counter;
+            document.getElementById("counterDisplay").style.color = colors[index];
+            index = (index + 1) % colors.length;
+            if (counter === 1000) {
+                clearInterval(intervalId);
+            }
+        }
+
+        document.getElementById("startButton").addEventListener("click", function() {
+            intervalId = setInterval(updateCounter, 1000);
+        });
+
+        document.getElementById("stopButton").addEventListener("click", function() {
+            clearInterval(intervalId);
+        });
+    </script>
+</body>
+</html>
